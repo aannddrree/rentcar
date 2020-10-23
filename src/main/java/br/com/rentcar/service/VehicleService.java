@@ -1,5 +1,6 @@
 package br.com.rentcar.service;
 
+import br.com.rentcar.jdbc.VehicleDB;
 import br.com.rentcar.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,11 @@ import java.util.Optional;
 public class VehicleService {
 
     //don't use spring data !
-    @Autowired
-    private VehicleRepository vehicleRepository;
-
     //@Autowired
-    //private VehicleDB vehicleRepository;
+    //private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private VehicleDB vehicleRepository;
 
     public Vehicle save(Vehicle vehicle){
         return vehicleRepository.save(vehicle);

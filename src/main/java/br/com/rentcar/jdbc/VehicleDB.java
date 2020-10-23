@@ -1,6 +1,7 @@
 package br.com.rentcar.jdbc;
 
 import br.com.rentcar.model.Vehicle;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class VehicleDB {
 
     private Connection connection;
