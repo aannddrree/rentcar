@@ -25,19 +25,21 @@ public class ClientDB {
             PreparedStatement stmt;
 
             if (client.getCpf().equals("") || client.getCpf().equals(null)){
-                sql = "UPDATE client SET name = ?, datebirth = ? WHERE cpf =  ?";
+                sql = "UPDATE client SET name = ?, date_birth = ?, status = ? WHERE cpf =  ?";
                 stmt = this.connection
                         .prepareStatement(sql);
                 stmt.setString(1, client.getName());
                 stmt.setString(2, client.getDateBirth());
-                stmt.setString(3, client.getCpf());
+                stmt.setBoolean(3,client.isStatus());
+                stmt.setString(4, client.getCpf());
             }else{
-                sql = "INSERT INTO client (cpf, name, datebirth) values (?, ?, ?)";
+                sql = "INSERT INTO client (cpf, name, status, date_birth) values (?, ?, ?, ?)";
                 stmt = this.connection
                         .prepareStatement(sql);
                 stmt.setString(1, client.getCpf());
                 stmt.setString(2, client.getName());
-                stmt.setString(3, client.getDateBirth());
+                stmt.setBoolean(3,client.isStatus());
+                stmt.setString(4, client.getDateBirth());
             }
             stmt.execute();
             return client;
@@ -76,14 +78,15 @@ public class ClientDB {
 
         List<Client> lstCadastro = new ArrayList<>();
         try {
-            ps = this.connection.prepareStatement("SELECT cpf, name, datebirth FROM client");
+            ps = this.connection.prepareStatement("SELECT cpf, name, date_birth, status FROM client");
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 Client client = new Client();
                 client.setCpf(rs.getString("cpf"));
                 client.setName(rs.getString("name"));
-                client.setDateBirth(rs.getString("datebirth"));
+                client.setDateBirth(rs.getString("date_birth"));
+                client.setStatus(rs.getBoolean("status"));
                 lstCadastro.add(client);
             }
         } catch (SQLException e) {
@@ -94,14 +97,15 @@ public class ClientDB {
 
     public Client findOne(String cpf) {
         try {
-            ps = this.connection.prepareStatement("SELECT cpf, name, datebirth FROM client WHERE cpf = " + cpf);
+            ps = this.connection.prepareStatement("SELECT cpf, name, date_birth, status FROM client WHERE cpf = " + cpf);
             rs = ps.executeQuery();
 
             if (rs.next()) {
                 Client client = new Client();
                 client.setCpf(rs.getString("cpf"));
                 client.setName(rs.getString("name"));
-                client.setDateBirth(rs.getString("datebirth"));
+                client.setDateBirth(rs.getString("date_birth"));
+                client.setStatus(rs.getBoolean("status"));
                 return client;
             }
         } catch (SQLException e) {

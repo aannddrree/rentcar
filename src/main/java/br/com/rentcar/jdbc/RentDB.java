@@ -3,7 +3,6 @@ package br.com.rentcar.jdbc;
 import br.com.rentcar.model.Client;
 import br.com.rentcar.model.Rent;
 import br.com.rentcar.model.Vehicle;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,9 +24,9 @@ public class RentDB {
         try {
             String sql = "";
             if (rent.getId() == 0){
-                sql = "UPDATE rent SET clientCPF = ?, vehicleId = ?, rentDate = ?, valueRent = ? WHERE id =  ?";
+                sql = "UPDATE rent SET client_cpf = ?, vehicle_id = ?, rent_date = ?, value_rent = ? WHERE id =  ?";
             }else{
-                sql = "INSERT INTO client (clientCPF, vehicleId, rentDate, valueRent) values (?, ?, ?, ?)";
+                sql = "INSERT INTO client (client_cpf, vehicle_id, rent_date, value_rent) values (?, ?, ?, ?)";
             }
             PreparedStatement stmt = this.connection
                     .prepareStatement(sql);
@@ -76,16 +75,16 @@ public class RentDB {
 
         List<Rent> lstCadastro = new ArrayList<>();
         try {
-            ps = this.connection.prepareStatement("SELECT id, clientCPF, vehicleId, rentDate, valueRent FROM rent");
+            ps = this.connection.prepareStatement("SELECT id, client_cpf, vehicle_id, rent_date, value_rent FROM rent");
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 Rent rent = new Rent();
                 rent.setId(rs.getInt("id"));
-                rent.setClient(new Client(rs.getString("clientCPF")));
-                rent.setVehicle(new Vehicle(rs.getInt("vehicleId")));
-                rent.setRentDate(rs.getString("rentDate"));
-                rent.setValueRent(rs.getDouble("valueRent"));
+                rent.setClient(new Client(rs.getString("client_cpf")));
+                rent.setVehicle(new Vehicle(rs.getInt("vehicle_id")));
+                rent.setRentDate(rs.getString("rent_date"));
+                rent.setValueRent(rs.getDouble("value_rent"));
                 lstCadastro.add(rent);
             }
         } catch (SQLException e) {
@@ -96,15 +95,15 @@ public class RentDB {
 
     public Rent findOne(int id) {
         try {
-            ps = this.connection.prepareStatement("SELECT id, clientCPF, vehicleId, rentDate, valueRent FROM rent WHERE id = " + id);
+            ps = this.connection.prepareStatement("SELECT id, client_cpf, vehicle_id, rent_date, value_rent FROM rent WHERE id = " + id);
             rs = ps.executeQuery();
             if (rs.next()) {
                 Rent rent = new Rent();
                 rent.setId(rs.getInt("id"));
-                rent.setClient(new Client(rs.getString("clientCPF")));
-                rent.setVehicle(new Vehicle(rs.getInt("vehicleId")));
-                rent.setRentDate(rs.getString("rentDate"));
-                rent.setValueRent(rs.getDouble("valueRent"));
+                rent.setClient(new Client(rs.getString("client_cpf")));
+                rent.setVehicle(new Vehicle(rs.getInt("vehicle_id")));
+                rent.setRentDate(rs.getString("rent_date"));
+                rent.setValueRent(rs.getDouble("value_rent"));
                 return rent;
             }
         } catch (SQLException e) {
