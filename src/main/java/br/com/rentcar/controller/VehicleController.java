@@ -37,7 +37,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value = Constants.API_VEHICLE + "/{id}", method = RequestMethod.GET)
-    public Optional<Vehicle> findById(@PathVariable("id") int id){
+    public Vehicle findById(@PathVariable("id") int id){
         return vehicleService.findByid(id);
     }
 }

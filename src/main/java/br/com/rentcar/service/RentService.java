@@ -24,10 +24,10 @@ public class RentService {
     public List<Rent> findAll(){
         return (List<Rent>) rentRepository.findAll();
     }
-    public Optional<Rent> findByid(int id){
-        return rentRepository.findById(id);
+    public Rent findByid(int id){
+        return rentRepository.findOne(id);
     }
     public void delete(int id){
-        rentRepository.deleteById(id);
+        rentRepository.delete(id);
     }
 }

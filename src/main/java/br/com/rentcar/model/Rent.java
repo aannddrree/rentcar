@@ -1,9 +1,6 @@
 package br.com.rentcar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Rent {
@@ -11,7 +8,9 @@ public class Rent {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
+    @ManyToOne
     private Client client;
+    @ManyToOne
     private Vehicle vehicle;
     private String rentDate;
     private double valueRent;

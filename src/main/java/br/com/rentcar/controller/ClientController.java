@@ -38,7 +38,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = Constants.API_CLIENT + "/{id}", method = RequestMethod.GET)
-    public Optional<Client> findById(@PathVariable("id") String cpf){
+    public Client findById(@PathVariable("id") String cpf){
         return clienteService.findByid(cpf);
     }
 }

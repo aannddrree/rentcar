@@ -24,10 +24,10 @@ public class VehicleService {
     public List<Vehicle> findAll(){
         return (List<Vehicle>) vehicleRepository.findAll();
     }
-    public Optional<Vehicle> findByid(int id){
-        return vehicleRepository.findById(id);
+    public Vehicle findByid(int id){
+        return vehicleRepository.findOne(id);
     }
     public void delete(int id){
-        vehicleRepository.deleteById(id);
+        vehicleRepository.delete(id);
     }
 }

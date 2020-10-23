@@ -23,10 +23,10 @@ public class ClientService {
     public List<Client> findAll(){
         return (List<Client>) clientRepository.findAll();
     }
-    public Optional<Client> findByid(String id){
-        return clientRepository.findById(id);
+    public Client findByid(String id){
+        return clientRepository.findOne(id);
     }
     public void delete(String id){
-        clientRepository.deleteById(id);
+        clientRepository.delete(id);
     }
 }
