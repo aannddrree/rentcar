@@ -1,9 +1,12 @@
 package br.com.rentcar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.rentcar.util.Fuel;
+import br.com.rentcar.util.Status;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Vehicle {
@@ -15,15 +18,23 @@ public class Vehicle {
     }
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+    @Column(length = 30)
+    @NotBlank
     private String brand;
+    @Column(length = 100)
+    @NotBlank
     private String name;
-    private String year;
-    private String model;
-    private String fuel;
+    @Min(value = 2000, message = "Tem que ser maior que 2000")
+    @Max(value = 2100, message = "Tem que ser menor que 2100")
+    private int year;
+    @Min(value = 2000, message = "Tem que ser maior que 2000")
+    @Max(value = 2100, message = "Tem que ser menor que 2100")
+    private int model;
+    private Fuel fuel;
     private double dailyValue;
-    private String status;
+    private Status status;
 
     public int getId() {
         return id;
@@ -49,27 +60,27 @@ public class Vehicle {
         this.name = name;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public String getModel() {
+    public int getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(int model) {
         this.model = model;
     }
 
-    public String getFuel() {
+    public Fuel getFuel() {
         return fuel;
     }
 
-    public void setFuel(String fuel) {
+    public void setFuel(Fuel fuel) {
         this.fuel = fuel;
     }
 
@@ -81,11 +92,11 @@ public class Vehicle {
         this.dailyValue = dailyValue;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

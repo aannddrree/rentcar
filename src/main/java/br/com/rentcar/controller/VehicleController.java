@@ -33,7 +33,7 @@ public class VehicleController {
         return this.save(client);
     }
 
-    @RequestMapping(value = Constants.API_VEHICLE, method = RequestMethod.DELETE)
+    @RequestMapping(value = Constants.API_VEHICLE + "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable("id") int id){
         vehicleService.delete(id);

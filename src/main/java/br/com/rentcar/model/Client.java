@@ -1,28 +1,39 @@
 package br.com.rentcar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.Date;
+
 
 @Entity
 public class Client {
 
     public Client(){}
 
-    public Client(String cpf){
+    public Client(int cpf){
         this.cpf = cpf;
     }
 
     @Id
-    private String cpf;
+    @Size(max = 11)
+    @NotBlank
+    private long cpf;
+    @Column(length = 100)
+    @NotBlank
     private String name;
-    private String dateBirth;
+    @Temporal(TemporalType.DATE)
+    @NotBlank
+    private Date dateBirth;
     private boolean status;
 
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -34,11 +45,11 @@ public class Client {
         this.name = name;
     }
 
-    public String getDateBirth() {
+    public Date getDateBirth() {
         return dateBirth;
     }
 
-    public void setDateBirth(String dateBirth) {
+    public void setDateBirth(Date dateBirth) {
         this.dateBirth = dateBirth;
     }
 

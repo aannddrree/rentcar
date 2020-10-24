@@ -1,0 +1,38 @@
+CREATE TABLE public.client (
+  cpf VARCHAR(255) NOT NULL,
+  date_birth VARCHAR(255),
+  name VARCHAR(255),
+  status BOOLEAN NOT NULL,
+  CONSTRAINT client_pkey PRIMARY KEY(cpf)
+) ;
+
+CREATE TABLE public.vehicle (
+  id INTEGER NOT NULL,
+  brand VARCHAR(255),
+  daily_value DOUBLE PRECISION NOT NULL,
+  fuel VARCHAR(255),
+  model VARCHAR(255),
+  name VARCHAR(255),
+  status VARCHAR(255),
+  year VARCHAR(255),
+  CONSTRAINT vehicle_pkey PRIMARY KEY(id)
+) ;
+
+CREATE TABLE public.rent (
+  id INTEGER NOT NULL,
+  rent_date VARCHAR(255),
+  value_rent DOUBLE PRECISION NOT NULL,
+  client_cpf VARCHAR(255),
+  vehicle_id INTEGER,
+  CONSTRAINT rent_pkey PRIMARY KEY(id),
+  CONSTRAINT fk5lywatsmefl4l9s1kdc32aq66 FOREIGN KEY (vehicle_id)
+    REFERENCES public.vehicle(id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    NOT DEFERRABLE,
+  CONSTRAINT fkawbsdehkt3sneu40yfu1xj9ml FOREIGN KEY (client_cpf)
+    REFERENCES public.client(cpf)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    NOT DEFERRABLE
+) ;

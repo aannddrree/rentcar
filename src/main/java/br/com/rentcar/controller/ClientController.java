@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import br.com.rentcar.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 import br.com.rentcar.model.Client;
 
 @Controller
@@ -33,7 +32,7 @@ public class ClientController {
         return this.save(client);
     }
 
-    @RequestMapping(value = Constants.API_CLIENT, method = RequestMethod.DELETE)
+    @RequestMapping(value = Constants.API_CLIENT + "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable("id") String cpf){
         clienteService.delete(cpf);

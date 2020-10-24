@@ -32,7 +32,7 @@ public class RentController {
         return this.save(rent);
     }
 
-    @RequestMapping(value = Constants.API_RENT, method = RequestMethod.DELETE)
+    @RequestMapping(value = Constants.API_RENT + "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable("id") int id){
         rentService.delete(id);

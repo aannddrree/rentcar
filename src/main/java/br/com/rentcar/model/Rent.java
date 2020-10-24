@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Rent {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @ManyToOne
     private Client client;
