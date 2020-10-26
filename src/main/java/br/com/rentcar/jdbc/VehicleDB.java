@@ -4,7 +4,6 @@ import br.com.rentcar.model.Vehicle;
 import br.com.rentcar.util.Fuel;
 import br.com.rentcar.util.Status;
 import org.springframework.stereotype.Repository;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
